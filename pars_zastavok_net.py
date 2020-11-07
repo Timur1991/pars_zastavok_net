@@ -22,6 +22,7 @@ for storage in range(3):
     all_image = block.find_all('div', class_='short_full')
 
     # ищем и скачиваем каждое изображение на странице
+    print(f'Страница {page}:')
     for image in all_image:
         image_link = image.find('a').get('href')
         image_name = image.find('img').get('alt')
@@ -40,8 +41,7 @@ for storage in range(3):
         with open(f'image/{image_number}-{image_name}.jpg', 'wb') as file:
             file.write(image_bytes)
         image_number += 1
-        print(f'Изображение со страницы {page} с названием {image_number}-{image_name}" - успешно скачано!')
-
+        print(f'Изображение {image_number}-{image_name}" - успешно скачано!')
     page += 1
 
 
