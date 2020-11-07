@@ -40,7 +40,7 @@ for storage in range(3):
         with open(f'image/{image_number}-{image_name}.jpg', 'wb') as file:
             file.write(image_bytes)
         image_number += 1
-        print(f'Изображение "{image_number}-{image_name}" - успешно скачан!')
+        print(f'Изображение со страницы {page} с названием {image_number}-{image_name}" - успешно скачано!')
 
     page += 1
 
