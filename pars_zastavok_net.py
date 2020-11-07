@@ -36,7 +36,7 @@ for storage in range(2):
         image_bytes = requests.get(f'{link}{result_link}').content
 
         # сохраняем наше полученное изображение
-        with open(f'image_lesson_5/{image_number}-{image_name}.jpg', 'wb') as file:
+        with open(f'image/{image_number}-{image_name}.jpg', 'wb') as file:
             file.write(image_bytes)
         image_number += 1
         print(f'Изображение "{image_number}-{image_name}" - успешно скачан!')
