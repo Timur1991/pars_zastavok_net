@@ -1,0 +1,45 @@
+import requests
+from bs4 import BeautifulSoup
+# pip install lxml
+
+# будем парсить https://zastavok.net/
+# скачиваем изображения с сайта
+
+page = 1
+image_number = 0
+
+link = f'https://zastavok.net'
+
+# проходимся по страницам от 1 до range
+for storage in range(2):
+    responce = requests.get(f'{link}/{page}').text
+    soup = BeautifulSoup(responce, 'lxml')
+    block = soup.find('div', class_='block-photo')
+    all_image = block.find_all('div', class_='short_full')
+
+    # ищем и скачиваем каждое изображение на странице
+    for image in all_image:
+        image_link = image.find('a').get('href')
+        image_name = image.find('img').get('alt')
+        #print(f'{image_name}: {image_link}')
+        download_storage = requests.get(f'{link}{image_link}').text
+        #print(download_image)
+        download_soup = BeautifulSoup(download_storage, 'lxml')
+        download_block = download_soup.find('div', class_='block_down')
+        result_link = download_block.find('a').get('href')
+        #print(result_link)
+
+        # получаем изображение
+        image_bytes = requests.get(f'{link}{result_link}').content
+
+        # сохраняем наше полученное изображение
+        with open(f'image_lesson_5/{image_number}-{image_name}.jpg', 'wb') as file:
+            file.write(image_bytes)
+        image_number += 1
+        print(f'Изображение "{image_number}-{image_name}" - успешно скачан!')
+
+    page += 1
+
+
+
+
