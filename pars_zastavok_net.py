@@ -14,8 +14,8 @@ image_number = 0
 
 link = f'https://zastavok.net'
 
-# проходимся по страницам от 1 до range, в данный момент до 2-й страницы (включительно)
-for storage in range(2):
+# проходимся по страницам от 1 до range, в данный момент до 3-й страницы (включительно)
+for storage in range(3):
     responce = requests.get(f'{link}/{page}').text
     soup = BeautifulSoup(responce, 'lxml')
     block = soup.find('div', class_='block-photo')
