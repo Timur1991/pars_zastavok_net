@@ -8,9 +8,12 @@ from bs4 import BeautifulSoup
 page = 1
 image_number = 0
 
+# можно добавить к ссылке раздел, который нужно скачивать,
+# например "https://zastavok.net/auto/" для скачивания автомобилей
+
 link = f'https://zastavok.net'
 
-# проходимся по страницам от 1 до range
+# проходимся по страницам от 1 до range, в данный момент до 2-й страницы (включительно)
 for storage in range(2):
     responce = requests.get(f'{link}/{page}').text
     soup = BeautifulSoup(responce, 'lxml')
