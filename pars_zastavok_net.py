@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 # будем парсить https://zastavok.net/
 # скачиваем изображения с сайта
+# работа выполнена по видеоуроку в целях самообучения
 
 page = 1
 image_number = 0
@@ -36,7 +37,7 @@ for storage in range(2):
         image_bytes = requests.get(f'{link}{result_link}').content
 
         # сохраняем наше полученное изображение
-        with open(f'image/{image_number}-{image_name}.jpg', 'w') as file:
+        with open(f'image/{image_number}-{image_name}.jpg', 'wb') as file:
             file.write(image_bytes)
         image_number += 1
         print(f'Изображение "{image_number}-{image_name}" - успешно скачан!')
